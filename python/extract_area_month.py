@@ -11,7 +11,7 @@ import pandas as pd
 
 def main():
 
-    if len(sys.argv) <= 6:
+    if len(sys.argv) <= 11:
         return -1
     
     stop = sys.argv[1]
@@ -20,6 +20,12 @@ def main():
     month = sys.argv[4]
     n_months = sys.argv[5] # number of consecutive months
     week = sys.argv[6] # 0 = whole month, 1 = first 2 weeks, 2 = last 2 weeks
+	
+	db_name = sys.argv[7]
+	host = sys.argv[8]
+	user = sys.argv[9]
+	password = sys.argv[10]
+	port = sys.argv[11]
 
     month_code = month 
     
@@ -46,7 +52,7 @@ def main():
     df_area = df[df["area"] == float(id_area)]
 
     # open connection to database
-    conn = psycopg2.connect("dbname=irpet", host="146.48.83.137", user="sbolgi", password="sbolgi2019", port="5435")
+    conn = psycopg2.connect(db_name, host=host, user=user, password=password, port=port)
     # the cursor allows Python code to execute PostgreSQL command in a database session.
     cur = conn.cursor()
 

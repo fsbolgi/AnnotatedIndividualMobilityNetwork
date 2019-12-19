@@ -14,13 +14,19 @@ import csv
 ########## MAIN FUNCTION ##########
 
 def main():
-    if len(sys.argv) <= 4:
+    if len(sys.argv) <= 9:
         return -1
 
     stop = sys.argv[1]
     id_area = sys.argv[2]
     month = sys.argv[3]
     week = sys.argv[4] # 0 = whole month, 1 = first 2 weeks, 2 = last 2 weeks
+	
+	db_name = sys.argv[5]
+	host = sys.argv[6]
+	user = sys.argv[7]
+	password = sys.argv[8]
+	port = sys.argv[9]
 
     file_name = '../../datasets/in/Traj' + stop + 'min/area'+id_area+'_month'+month+'_week'+ week
 
@@ -28,7 +34,7 @@ def main():
     df = pd.read_csv(file_name+'_stops.csv')
 
     # open connection to database
-    conn = psycopg2.connect("dbname=irpet", host="146.48.83.137", user="sbolgi", password="sbolgi2019", port="5435")
+    conn = psycopg2.connect(db_name, host=host, user=user, password=password, port=port)
     cursor = conn.cursor()
 
     eng_status_start = []

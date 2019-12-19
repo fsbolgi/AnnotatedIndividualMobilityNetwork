@@ -108,16 +108,22 @@ def write_header(file_name):
 ########## MAIN FUNCTION ##########
 
 def main():
-    if len(sys.argv) <= 1:
+    if len(sys.argv) <= 6:
         return -1
            
     stop = sys.argv[1]  # stop can be either 5 or 10
+	
+	db_name = sys.argv[2]
+	host = sys.argv[3]
+	user = sys.argv[4]
+	password = sys.argv[5]
+	port = sys.argv[6]
 
     # open vehicle list.csv as df
     df = pd.read_csv('../../datasets/in/Traj' + stop + 'min/vehicle_list.csv')
 
     # open connection to database
-    conn = psycopg2.connect("dbname=irpet", host="146.48.83.137", user="sbolgi", password="sbolgi2019", port="5435")
+    conn = psycopg2.connect(db_name, host=host, user=user, password=password, port=port)
     cursor = conn.cursor()
 
     # create new csv vehicle areas and write header
