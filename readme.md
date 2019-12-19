@@ -1,4 +1,4 @@
-# CODE
+# Annotated Individual Mobility Network
 
 ## JUPYTER NOTEBOOK
 
